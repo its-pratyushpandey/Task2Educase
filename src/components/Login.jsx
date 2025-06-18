@@ -1,9 +1,12 @@
+// External dependencies
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaEnvelope, FaLock, FaCheckCircle, FaSpinner, FaArrowLeft } from 'react-icons/fa';
 import './index.css';
 
+// Login component
 const Login = () => {
+  // State management
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -11,8 +14,10 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
+  // Form validation
   const isFormValid = email && password;
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isFormValid) {
@@ -26,121 +31,162 @@ const Login = () => {
   };
 
   return (
-    <div className="register-bg-pro fade-in-pro" style={{
-      minHeight: '100vh',
-      width: '100vw',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      background: 'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 50%, #6c5ce7 100%)',
-      overflow: 'hidden',
-      position: 'relative',
-      zIndex: 0
-    }}>
-      {/* Animated Blobs */}
+    <div
+      className="register-bg-pro fade-in-pro"
+      style={{
+        minHeight: '100vh',
+        width: '100vw',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        background: 'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 50%, #6c5ce7 100%)',
+        overflow: 'hidden',
+        position: 'relative',
+        zIndex: 0,
+      }}
+    >
+      {/* Animated background blobs */}
       <div className="blob-bg-pro">
         <div className="blob blob1" />
         <div className="blob blob2" />
         <div className="blob blob3" />
       </div>
-      {/* Glassmorphism Card */}
-      <button onClick={() => navigate(-1)} style={{
-        position: 'absolute',
-        top: 30,
-        left: 30,
-        background: 'rgba(255,255,255,0.7)',
-        border: 'none',
-        borderRadius: '50%',
-        width: 44,
-        height: 44,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        boxShadow: '0 2px 8px #6c5ce71a',
-        cursor: 'pointer',
-        zIndex: 2,
-        transition: 'background 0.2s'
-      }} title="Back">
+
+      {/* Back button */}
+      <button
+        onClick={() => navigate(-1)}
+        style={{
+          position: 'absolute',
+          top: 30,
+          left: 30,
+          background: 'rgba(255,255,255,0.7)',
+          border: 'none',
+          borderRadius: '50%',
+          width: 44,
+          height: 44,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 2px 8px #6c5ce71a',
+          cursor: 'pointer',
+          zIndex: 2,
+          transition: 'background 0.2s',
+        }}
+        title="Back"
+      >
         <FaArrowLeft style={{ color: '#6c5ce7', fontSize: '1.2rem' }} />
       </button>
-      <div className="register-card-pro animate-card-in" style={{
-        background: 'rgba(255,255,255,0.85)',
-        borderRadius: '32px',
-        boxShadow: '0 12px 48px 0 rgba(76, 110, 245, 0.18)',
-        padding: '48px 36px',
-        maxWidth: '440px',
-        width: '100%',
-        position: 'relative',
-        overflow: 'hidden',
-        backdropFilter: 'blur(16px)',
-        border: '1.5px solid #e0c3fc',
-        zIndex: 1
-      }}>
-        {/* Animated success checkmark overlay */}
+
+      {/* Glassmorphism card */}
+      <div
+        className="register-card-pro animate-card-in"
+        style={{
+          background: 'rgba(255,255,255,0.85)',
+          borderRadius: '32px',
+          boxShadow: '0 12px 48px 0 rgba(76, 110, 245, 0.18)',
+          padding: '48px 36px',
+          maxWidth: '440px',
+          width: '100%',
+          position: 'relative',
+          overflow: 'hidden',
+          backdropFilter: 'blur(16px)',
+          border: '1.5px solid #e0c3fc',
+          zIndex: 1,
+        }}
+      >
+        {/* Success overlay after login */}
         {submitted && (
-          <div className="success-overlay fade-in-pro" style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'rgba(255,255,255,0.97)',
-            zIndex: 10,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderRadius: '32px',
-            animation: 'fadeIn 0.7s'
-          }}>
+          <div
+            className="success-overlay fade-in-pro"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'rgba(255,255,255,0.97)',
+              zIndex: 10,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: '32px',
+              animation: 'fadeIn 0.7s',
+            }}
+          >
             <FaCheckCircle style={{ color: '#00b894', fontSize: '3.5rem', animation: 'pop 0.6s' }} />
             <h2 style={{ color: '#6c5ce7', marginTop: 18, fontWeight: 700 }}>Login Successful!</h2>
           </div>
         )}
-        {/* Floating Logo/Icon */}
-        <div className="floating-logo-pro animate-float-pro" style={{
-          position: 'absolute',
-          top: -38,
-          left: '50%',
-          transform: 'translateX(-50%)',
-          background: 'linear-gradient(135deg, #6c5ce7 0%, #8ec5fc 100%)',
-          borderRadius: '50%',
-          width: 76,
-          height: 76,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: '0 4px 24px #6c5ce744',
-          zIndex: 3
-        }}>
-          <FaLock style={{ color: '#fff', fontSize: '2.5rem', filter: 'drop-shadow(0 2px 8px #00b89488)' }} />
-        </div>
-        <div style={{ marginBottom: '20px', textAlign: 'center', marginTop: 32 }}>
-          <h1 style={{
-            fontSize: '2.2rem',
-            fontWeight: '700',
-            color: '#6c5ce7',
-            marginBottom: '18px',
-            letterSpacing: '1px',
+
+        {/* Floating logo/icon */}
+        <div
+          className="floating-logo-pro animate-float-pro"
+          style={{
+            position: 'absolute',
+            top: -38,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            background: 'linear-gradient(135deg, #6c5ce7 0%, #8ec5fc 100%)',
+            borderRadius: '50%',
+            width: 76,
+            height: 76,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '10px'
-          }}>
+            boxShadow: '0 4px 24px #6c5ce744',
+            zIndex: 3,
+          }}
+        >
+          <FaLock style={{ color: '#fff', fontSize: '2.5rem', filter: 'drop-shadow(0 2px 8px #00b89488)' }} />
+        </div>
+
+        {/* Title and description */}
+        <div style={{ marginBottom: '20px', textAlign: 'center', marginTop: 32 }}>
+          <h1
+            style={{
+              fontSize: '2.2rem',
+              fontWeight: '700',
+              color: '#6c5ce7',
+              marginBottom: '18px',
+              letterSpacing: '1px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '10px',
+            }}
+          >
             Login
           </h1>
-          <p style={{
-            fontSize: '1rem',
-            color: '#636e72',
-            marginBottom: '30px',
-            lineHeight: '1.6'
-          }}>Welcome back! Please enter your credentials to access your account.</p>
-          <p style={{
-            fontSize: '1rem',
-            color: '#636e72',
-            marginBottom: '10px',
-            lineHeight: '1.6'
-          }}>Don't have an account? <Link to="/register" style={{ color: '#6c5ce7', fontWeight: '600', textDecoration: 'underline' }}>Sign up</Link></p>
+          <p
+            style={{
+              fontSize: '1rem',
+              color: '#636e72',
+              marginBottom: '30px',
+              lineHeight: '1.6',
+            }}
+          >
+            Welcome back! Please enter your credentials to access your account.
+          </p>
+          <p
+            style={{
+              fontSize: '1rem',
+              color: '#636e72',
+              marginBottom: '10px',
+              lineHeight: '1.6',
+            }}
+          >
+            Don't have an account?{' '}
+            <Link
+              to="/register"
+              style={{ color: '#6c5ce7', fontWeight: '600', textDecoration: 'underline' }}
+            >
+              Sign up
+            </Link>
+          </p>
         </div>
+
+        {/* Login form */}
         <form onSubmit={handleSubmit} autoComplete="off">
+          {/* Email input */}
           <div className="form-group input-icon-group-pro">
             <FaEnvelope className="input-icon-pro" />
             <input
@@ -153,6 +199,8 @@ const Login = () => {
               required
             />
           </div>
+
+          {/* Password input with toggle */}
           <div className="form-group input-icon-group-pro" style={{ position: 'relative' }}>
             <FaLock className="input-icon-pro" />
             <input
@@ -174,25 +222,48 @@ const Login = () => {
                 transform: 'translateY(-50%)',
                 cursor: 'pointer',
                 color: '#6c5ce7',
-                opacity: 0.8
+                opacity: 0.8,
               }}
-              onClick={() => setShowPassword(v => !v)}
+              onClick={() => setShowPassword((v) => !v)}
               title={showPassword ? 'Hide Password' : 'Show Password'}
             >
               {showPassword ? <FaLock /> : <FaLock style={{ opacity: 0.5 }} />}
             </span>
           </div>
+
+          {/* Submit button */}
           <button
             type="submit"
-            className={isFormValid && !loading ? 'btn-pro btn-primary-pro animated-btn-pro' : 'btn-pro btn-disabled-pro'}
-            style={{ width: '100%', marginTop: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', fontWeight: 600, fontSize: '1.1rem', letterSpacing: '0.5px', transition: 'all 0.2s' }}
+            className={
+              isFormValid && !loading
+                ? 'btn-pro btn-primary-pro animated-btn-pro'
+                : 'btn-pro btn-disabled-pro'
+            }
+            style={{
+              width: '100%',
+              marginTop: '20px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '10px',
+              fontWeight: 600,
+              fontSize: '1.1rem',
+              letterSpacing: '0.5px',
+              transition: 'all 0.2s',
+            }}
             disabled={!isFormValid || loading}
           >
-            {loading ? <FaSpinner className="spin-pro" style={{ fontSize: '1.2rem' }} /> : <FaCheckCircle style={{ fontSize: '1.2rem' }} />}
+            {loading ? (
+              <FaSpinner className="spin-pro" style={{ fontSize: '1.2rem' }} />
+            ) : (
+              <FaCheckCircle style={{ fontSize: '1.2rem' }} />
+            )}
             {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
       </div>
+
+      {/* Inline styles for animation and responsiveness */}
       <style>{`
         .fade-in-pro {
           animation: fadeInPro 1.2s;
