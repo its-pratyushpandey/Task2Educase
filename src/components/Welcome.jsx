@@ -2,25 +2,54 @@ import { Link } from 'react-router-dom';
 
 const Welcome = () => {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-[#f8fafc] via-[#e0e7ff] to-[#f3e8ff] relative overflow-hidden font-poppins">
-      {/* Animated Gradient Overlay */}
-      <div className="absolute inset-0 -z-20">
-        <div className="w-full h-full bg-gradient-to-tr from-[#a18fff]/40 via-[#6c5ce7]/20 to-[#fff]/10 animate-gradient-move" />
-      </div>
-      {/* Animated Blobs & Sparkles Background */}
-      <div className="absolute top-0 left-0 w-full h-full -z-10 pointer-events-none">
-        <div className="absolute w-96 h-96 bg-[#6c5ce7] opacity-20 rounded-full filter blur-3xl animate-pulse top-[-100px] left-[-100px]" />
-        <div className="absolute w-80 h-80 bg-[#a18fff] opacity-10 rounded-full filter blur-2xl animate-pulse top-[60%] left-[70%]" />
-        <div className="absolute w-72 h-72 bg-[#fdcb6e] opacity-10 rounded-full filter blur-2xl animate-pulse top-[70%] left-[-10%]" />
-        {/* Sparkle */}
-        <svg className="absolute animate-sparkle1 left-[20%] top-[30%] w-8 h-8 opacity-70" viewBox="0 0 24 24" fill="#fff8e1">
-          <path d="M12 2l2 7h7l-5.5 4 2 7-5.5-4-5.5 4 2-7L3 9h7z" />
-        </svg>
+    <div className="register-bg-pro fade-in-pro min-h-screen flex flex-col justify-center items-center relative overflow-hidden font-poppins" style={{
+      minHeight: '100vh',
+      width: '100vw',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      background: 'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 50%, #6c5ce7 100%)',
+      overflow: 'hidden',
+      position: 'relative',
+      zIndex: 0
+    }}>
+      {/* Animated Blobs */}
+      <div className="blob-bg-pro">
+        <div className="blob blob1" />
+        <div className="blob blob2" />
+        <div className="blob blob3" />
       </div>
       {/* Glassmorphism Card with Glow */}
-      <div className="backdrop-blur-lg bg-white/80 rounded-3xl shadow-2xl px-10 py-12 flex flex-col items-center max-w-xl w-full border border-white/40 animate-fade-in ring-4 ring-[#a18fff]/10 hover:ring-[#6c5ce7]/30 transition-all duration-500 relative">
+      <div className="register-card-pro animate-card-in backdrop-blur-lg bg-white/80 rounded-3xl shadow-2xl px-10 py-12 flex flex-col items-center max-w-xl w-full border border-white/40 animate-fade-in ring-4 ring-[#a18fff]/10 hover:ring-[#6c5ce7]/30 transition-all duration-500 relative" style={{
+        background: 'rgba(255,255,255,0.85)',
+        borderRadius: '32px',
+        boxShadow: '0 12px 48px 0 rgba(76, 110, 245, 0.18)',
+        padding: '48px 36px',
+        maxWidth: '440px',
+        width: '100%',
+        position: 'relative',
+        overflow: 'hidden',
+        backdropFilter: 'blur(16px)',
+        border: '1.5px solid #e0c3fc',
+        zIndex: 1
+      }}>
         {/* Floating Premium Icon */}
-        <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-gradient-to-tr from-[#6c5ce7] to-[#a18fff] p-3 rounded-full shadow-xl animate-float-glow">
+        <div className="floating-logo-pro animate-float-pro absolute -top-10 left-1/2 -translate-x-1/2 bg-gradient-to-tr from-[#6c5ce7] to-[#a18fff] p-3 rounded-full shadow-xl animate-float-glow" style={{
+          position: 'absolute',
+          top: -38,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          background: 'linear-gradient(135deg, #6c5ce7 0%, #8ec5fc 100%)',
+          borderRadius: '50%',
+          width: 76,
+          height: 76,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 4px 24px #6c5ce744',
+          zIndex: 3
+        }}>
           <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2">
             <path d="M12 2l3 7h7l-5.5 4 2 7-5.5-4-5.5 4 2-7L2 9h7z" />
           </svg>
@@ -44,7 +73,6 @@ const Welcome = () => {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit,
             </span>
           </h1>
-         
         </div>
         {/* Features Row - Only 4 Premium Icons */}
         <div className="flex flex-wrap justify-center gap-8 my-8">
@@ -68,16 +96,6 @@ const Welcome = () => {
               </svg>
             </span>
             <span className="text-sm font-semibold text-[#00b894]">Security</span>
-          </div>
-          {/* Collaboration */}
-          <div className="flex flex-col items-center">
-            <span className="bg-[#a18fff]/10 p-4 rounded-full mb-2 animate-float-delay2 shadow-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#fdcb6e" className="w-8 h-8">
-                <circle cx="12" cy="7" r="4" />
-                <path d="M5.5 21a7.5 7.5 0 0113 0" />
-              </svg>
-            </span>
-            <span className="text-sm font-semibold text-[#fdcb6e]">Collaboration</span>
           </div>
           {/* Support */}
           <div className="flex flex-col items-center">
@@ -134,8 +152,87 @@ const Welcome = () => {
           </button>
         </div>
       </div>
-      {/* Custom Animations */}
+      {/* Custom Animations & Premium Styles */}
       <style>{`
+        .fade-in-pro {
+          animation: fadeInPro 1.2s;
+        }
+        @keyframes fadeInPro {
+          from { opacity: 0; transform: translateY(40px) scale(0.98); }
+          to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .animate-card-in {
+          animation: cardIn 1.1s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        @keyframes cardIn {
+          0% { opacity: 0; transform: scale(0.95) translateY(60px); }
+          100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .animate-float-pro {
+          animation: floatPro 3.5s ease-in-out infinite;
+        }
+        @keyframes floatPro {
+          0%, 100% { transform: translateX(-50%) translateY(0); }
+          50% { transform: translateX(-50%) translateY(-12px); }
+        }
+        .blob-bg-pro {
+          position: absolute;
+          inset: 0;
+          width: 100vw;
+          height: 100vh;
+          z-index: 0;
+          overflow: hidden;
+        }
+        .blob {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(60px);
+          opacity: 0.25;
+          animation: blobMove 12s infinite alternate;
+        }
+        .blob1 {
+          width: 420px; height: 420px;
+          background: #6c5ce7;
+          top: -120px; left: -120px;
+          animation-delay: 0s;
+        }
+        .blob2 {
+          width: 320px; height: 320px;
+          background: #00b894;
+          bottom: -100px; right: -100px;
+          animation-delay: 2s;
+        }
+        .blob3 {
+          width: 260px; height: 260px;
+          background: #a18fff;
+          top: 60%; left: 70%;
+          animation-delay: 4s;
+        }
+        @keyframes blobMove {
+          0% { transform: scale(1) translateY(0) translateX(0); }
+          100% { transform: scale(1.15) translateY(-30px) translateX(30px); }
+        }
+        .register-card-pro {
+          transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .register-card-pro:hover {
+          box-shadow: 0 16px 56px 0 rgba(76, 110, 245, 0.22);
+          transform: translateY(-2px) scale(1.01);
+        }
+        .floating-logo-pro {
+          z-index: 3;
+        }
+        @media (max-width: 600px) {
+          .register-card-pro {
+            padding: 32px 8px;
+            max-width: 98vw;
+            border-radius: 18px;
+          }
+          .floating-logo-pro {
+            width: 54px; height: 54px; top: -28px;
+          }
+        }
+        /* Keep all your existing custom and Tailwind animations */
         .animate-spin-slow { animation: spin 8s linear infinite; }
         .animate-fade-in { animation: fadeIn 1s ease-in; }
         .animate-fade-in-delay { animation: fadeIn 1.5s ease-in; }

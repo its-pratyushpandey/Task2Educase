@@ -234,43 +234,7 @@ const Register = () => {
             />
           </div>
           <div className="form-group fade-in-pro" style={{ marginBottom: '18px', marginTop: '10px' }}>
-            <label style={{
-              color: '#2d3436',
-              fontWeight: '500',
-              marginBottom: '6px',
-              display: 'block',
-              fontSize: '1rem'
-            }}>Are you an Agency?</label>
-            <div className="radio-group-pro" style={{ display: 'flex', gap: '18px', marginTop: '6px' }}>
-              <div className="radio-option-pro" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <input
-                  type="radio"
-                  id="yes"
-                  name="hasExperience"
-                  value="yes"
-                  checked={formData.hasExperience === 'yes'}
-                  onChange={handleChange}
-                  style={{ accentColor: '#6c5ce7' }}
-                />
-                <label htmlFor="yes" style={{ color: '#2d3436', fontWeight: '500', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  <FaRegDotCircle style={{ color: formData.hasExperience === 'yes' ? '#6c5ce7' : '#b2bec3' }} /> Yes
-                </label>
-              </div>
-              <div className="radio-option-pro" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <input
-                  type="radio"
-                  id="no"
-                  name="hasExperience"
-                  value="no"
-                  checked={formData.hasExperience === 'no'}
-                  onChange={handleChange}
-                  style={{ accentColor: '#6c5ce7' }}
-                />
-                <label htmlFor="no" style={{ color: '#2d3436', fontWeight: '500', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  <FaRegDotCircle style={{ color: formData.hasExperience === 'no' ? '#6c5ce7' : '#b2bec3' }} /> No
-                </label>
-              </div>
-            </div>
+            {/* Removed Yes/No radio buttons for 'Are you an Agency?' */}
           </div>
           <button
             type="submit"
@@ -412,6 +376,17 @@ const Register = () => {
         }
         .password-toggle-pro:hover {
           color: #00b894;
+        }
+        .premium-radio-toggle-pro {
+          box-shadow: 0 2px 8px #6c5ce71a;
+          transition: box-shadow 0.2s;
+        }
+        .premium-radio-label-pro {
+          transition: all 0.25s;
+          user-select: none;
+        }
+        .premium-radio-label-pro:hover {
+          filter: brightness(1.08) drop-shadow(0 2px 8px #00b89433);
         }
         @media (max-width: 600px) {
           .register-card-pro {
