@@ -5,41 +5,29 @@ import {
 import profilePlaceholder from '../assets/profile-placeholder.jpeg';
 import './index.css';
 
+// Dashboard statistics data
 const statsData = [
-  {
-    label: 'Projects',
-    value: 12,
-    icon: <FaChartBar className="text-primary text-2xl" />, color: 'bg-[#e0c3fc]'
-  },
-  {
-    label: 'Messages',
-    value: 34,
-    icon: <FaEnvelope className="text-[#00b894] text-2xl" />, color: 'bg-[#d0f5ea]'
-  },
-  {
-    label: 'Analytics',
-    value: '98%',
-    icon: <FaChartBar className="text-[#6c5ce7] text-2xl" />, color: 'bg-[#f3e8ff]'
-  },
-  {
-    label: 'Support',
-    value: 5,
-    icon: <FaHeadset className="text-[#a18fff] text-2xl" />, color: 'bg-[#e0e7ff]'
-  },
+  { label: 'Projects', value: 12, icon: <FaChartBar className="text-primary text-2xl" />, color: 'bg-[#e0c3fc]' },
+  { label: 'Messages', value: 34, icon: <FaEnvelope className="text-[#00b894] text-2xl" />, color: 'bg-[#d0f5ea]' },
+  { label: 'Analytics', value: '98%', icon: <FaChartBar className="text-[#6c5ce7] text-2xl" />, color: 'bg-[#f3e8ff]' },
+  { label: 'Support', value: 5, icon: <FaHeadset className="text-[#a18fff] text-2xl" />, color: 'bg-[#e0e7ff]' },
 ];
 
+// Recent notifications/messages
 const recentMessages = [
   { from: 'Support', text: 'Your ticket has been updated.', time: '2m ago', icon: <FaHeadset className="text-[#6c5ce7]" /> },
   { from: 'Analytics', text: 'Your stats improved by 10%.', time: '1h ago', icon: <FaChartBar className="text-[#00b894]" /> },
   { from: 'Recruiter', text: 'Profile viewed.', time: '3h ago', icon: <FaUserCircle className="text-[#a18fff]" /> },
 ];
 
+// Activity timeline data
 const activityTimeline = [
   { icon: <FaCheckCircle className="text-green-500" />, label: 'Completed onboarding', time: 'Today' },
   { icon: <FaRocket className="text-[#6c5ce7]" />, label: 'Launched new project', time: 'Yesterday' },
   { icon: <FaRegStar className="text-yellow-400" />, label: 'Received 5-star review', time: '2 days ago' },
 ];
 
+// Quick links for dashboard
 const quickLinks = [
   { label: 'Docs', icon: <FaLink />, url: 'https://docs.popx.com' },
   { label: 'Community', icon: <FaRegCommentDots />, url: 'https://community.popx.com' },
@@ -47,6 +35,7 @@ const quickLinks = [
 ];
 
 const Dashboard = () => {
+  // User state and UI toggles
   const [user] = useState({
     name: 'Pratyush Kumar Pandey',
     email: 'pratyush@example.com',
@@ -58,7 +47,7 @@ const Dashboard = () => {
   const [showSettings, setShowSettings] = useState(false);
   const [showToast, setShowToast] = useState('');
 
-  // Dark mode toggle
+  // Toggle dark mode
   const handleDarkToggle = () => {
     setDark((d) => !d);
     document.body.style.background = !dark
@@ -67,7 +56,7 @@ const Dashboard = () => {
     document.body.style.color = !dark ? '#fff' : 'var(--dark)';
   };
 
-  // Logout (simulate)
+  // Simulate logout
   const handleLogout = () => {
     setShowToast('Logged out successfully!');
     setTimeout(() => {
@@ -76,37 +65,43 @@ const Dashboard = () => {
     }, 1200);
   };
 
-  // Edit profile (simulate)
+  // Simulate edit profile
   const handleEditProfile = () => {
     setShowToast('Edit Profile feature coming soon!');
     setTimeout(() => setShowToast(''), 1500);
   };
 
-  // Settings (simulate)
-  const handleSettings = () => {
-    setShowSettings(true);
-  };
+  // Simulate settings
+  const handleSettings = () => setShowSettings(true);
 
-  // Help (simulate)
+  // Simulate help/support
   const handleHelp = () => {
     setShowToast('Support feature coming soon!');
     setTimeout(() => setShowToast(''), 1500);
   };
 
-  // Settings modal close
+  // Close settings modal
   const closeSettings = () => setShowSettings(false);
 
   return (
-    <div className={`min-h-screen w-full font-poppins transition-all duration-300 ${dark ? 'bg-[#232946] text-white' : 'bg-white text-[#2d3436]'}`}
-      style={{ minHeight: '100vh', padding: '0', margin: 0, background: dark ? 'linear-gradient(135deg, #232946 0%, #6c5ce7 100%)' : 'linear-gradient(135deg, #f3e8ff 0%, #fff 100%)' }}
+    <div
+      className={`min-h-screen w-full font-poppins transition-all duration-300 ${dark ? 'bg-[#232946] text-white' : 'bg-white text-[#2d3436]'}`}
+      style={{
+        minHeight: '100vh',
+        padding: '0',
+        margin: 0,
+        background: dark
+          ? 'linear-gradient(135deg, #232946 0%, #6c5ce7 100%)'
+          : 'linear-gradient(135deg, #f3e8ff 0%, #fff 100%)'
+      }}
     >
-      {/* Toast Notification */}
+      {/* Toast notification */}
       {showToast && (
         <div className="fixed top-6 right-6 z-50 bg-primary text-white px-6 py-3 rounded-xl shadow-lg animate-fade-in">
           {showToast}
         </div>
       )}
-      {/* Settings Modal */}
+      {/* Settings modal */}
       {showSettings && (
         <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/40 animate-fade-in">
           <div className="bg-white text-[#2d3436] rounded-2xl shadow-2xl p-8 w-full max-w-md relative animate-fade-in">
@@ -121,7 +116,7 @@ const Dashboard = () => {
           </div>
         </div>
       )}
-      {/* Top Navbar */}
+      {/* Top navigation bar */}
       <nav className="flex items-center justify-between px-8 py-5 shadow-md bg-white/80 backdrop-blur-lg sticky top-0 z-20 border-b border-[#a18fff]/10">
         <div className="flex items-center gap-3">
           <span className="text-2xl font-extrabold text-primary tracking-tight flex items-center gap-2">
@@ -130,7 +125,7 @@ const Dashboard = () => {
           </span>
         </div>
         <div className="flex items-center gap-6">
-          {/* Notifications */}
+          {/* Notifications dropdown */}
           <div className="relative">
             <button onClick={() => setShowNotif((v) => !v)} className="relative p-2 rounded-full hover:bg-[#f3e8ff] transition">
               <FaBell className="text-xl text-[#6c5ce7]" />
@@ -149,11 +144,11 @@ const Dashboard = () => {
               </div>
             )}
           </div>
-          {/* Dark mode toggle */}
+          {/* Dark mode toggle button */}
           <button onClick={handleDarkToggle} className="p-2 rounded-full hover:bg-[#f3e8ff] transition">
             {dark ? <FaSun className="text-xl text-yellow-400" /> : <FaMoon className="text-xl text-[#6c5ce7]" />}
           </button>
-          {/* User menu */}
+          {/* User menu dropdown */}
           <div className="relative">
             <button onClick={() => setShowMenu((v) => !v)} className="flex items-center gap-2 px-3 py-2 rounded-full hover:bg-[#f3e8ff] transition">
               <img src={user.photo} alt="Profile" className="w-9 h-9 rounded-full object-cover border-2 border-primary" />
@@ -171,9 +166,9 @@ const Dashboard = () => {
         </div>
       </nav>
 
-      {/* Main Content */}
+      {/* Main dashboard content */}
       <div className="container mx-auto px-4 py-10 flex flex-col gap-8">
-        {/* Profile Card */}
+        {/* Profile card */}
         <div className="flex flex-col md:flex-row gap-8 items-center md:items-start bg-white/90 rounded-3xl shadow-xl p-8 border border-[#a18fff]/10 animate-fade-in backdrop-blur-md" style={{background: dark ? 'rgba(35,41,70,0.7)' : 'rgba(255,255,255,0.8)'}}>
           <div className="relative">
             <img src={user.photo} alt="Profile" className="w-36 h-36 rounded-full object-cover border-4 border-primary shadow-lg" />
@@ -194,7 +189,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Stats Cards */}
+        {/* Stats cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {statsData.map((stat, idx) => (
             <div key={stat.label} className={`rounded-2xl shadow-lg p-6 flex flex-col items-center gap-2 border border-[#a18fff]/10 ${stat.color} animate-fade-in`} style={{ animationDelay: `${idx * 0.1}s` }}>
@@ -205,9 +200,9 @@ const Dashboard = () => {
           ))}
         </div>
 
-        {/* Activity Timeline & Recent Messages */}
+        {/* Activity timeline and recent messages */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in">
-          {/* Activity Timeline */}
+          {/* Activity timeline */}
           <div className="bg-white/90 rounded-2xl shadow-lg p-6 border border-[#a18fff]/10 backdrop-blur-md" style={{background: dark ? 'rgba(35,41,70,0.7)' : 'rgba(255,255,255,0.8)'}}>
             <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-primary"><FaRegClock /> Activity Timeline</h3>
             <ul className="space-y-4">
@@ -220,7 +215,7 @@ const Dashboard = () => {
               ))}
             </ul>
           </div>
-          {/* Recent Messages */}
+          {/* Recent messages */}
           <div className="bg-white/90 rounded-2xl shadow-lg p-6 border border-[#a18fff]/10 backdrop-blur-md" style={{background: dark ? 'rgba(35,41,70,0.7)' : 'rgba(255,255,255,0.8)'}}>
             <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-primary"><FaEnvelope /> Recent Messages</h3>
             <ul className="space-y-4">
@@ -235,14 +230,14 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Quick Actions */}
+        {/* Quick action buttons */}
         <div className="flex flex-wrap gap-4 justify-center md:justify-start mt-6 animate-fade-in">
           <button onClick={handleEditProfile} className="px-6 py-3 rounded-lg bg-[#6c5ce7] text-white font-bold shadow-lg hover:bg-[#5e54c7] transition-all flex items-center gap-2"><FaUserEdit /> Edit Profile</button>
           <button onClick={handleSettings} className="px-6 py-3 rounded-lg border-2 border-[#6c5ce7] text-[#6c5ce7] font-bold shadow-lg hover:bg-[#6c5ce7] hover:text-white transition-all flex items-center gap-2"><FaCog /> Settings</button>
           <button onClick={handleHelp} className="px-6 py-3 rounded-lg bg-[#a18fff] text-white font-bold shadow-lg hover:bg-[#6c5ce7] transition-all flex items-center gap-2"><FaHeadset /> Support</button>
         </div>
 
-        {/* Quick Links */}
+        {/* Quick links */}
         <div className="flex flex-wrap gap-4 justify-center md:justify-start mt-6 animate-fade-in">
           {quickLinks.map((link, i) => (
             <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="px-5 py-3 rounded-lg bg-white/80 border border-[#a18fff]/20 shadow hover:bg-[#f3e8ff] transition-all flex items-center gap-2 text-primary font-semibold">
@@ -251,7 +246,7 @@ const Dashboard = () => {
           ))}
         </div>
       </div>
-      {/* Animations */}
+      {/* Animations and custom styles */}
       <style>{`
         .animate-fade-in { animation: fadeIn 1s ease-in; }
         @keyframes fadeIn {
