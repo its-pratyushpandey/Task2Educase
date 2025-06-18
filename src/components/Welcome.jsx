@@ -1,6 +1,29 @@
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
+const luxuryWords = [
+  'Lorem', 'ipsum', 'dolor', 'sit', 'amet,', 'consectetur', 'adipiscing', 'elit,'
+];
 
 const Welcome = () => {
+  // Loader state
+  const [loading, setLoading] = useState(true);
+  // Text fill animation state
+  const [fillIndex, setFillIndex] = useState(-1);
+
+  useEffect(() => {
+    // Loader timeout (simulate loading)
+    const timer = setTimeout(() => setLoading(false), 1400);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!loading && fillIndex < luxuryWords.length - 1) {
+      const fillTimer = setTimeout(() => setFillIndex((i) => i + 1), 180);
+      return () => clearTimeout(fillTimer);
+    }
+  }, [fillIndex, loading]);
+
   return (
     <div className="register-bg-pro fade-in-pro min-h-screen flex flex-col justify-center items-center relative overflow-hidden font-poppins" style={{
       minHeight: '100vh',
@@ -14,6 +37,16 @@ const Welcome = () => {
       position: 'relative',
       zIndex: 0
     }}>
+      {/* Luxury Loader Overlay */}
+      {loading && (
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-[#e0c3fc] via-[#a18fff] to-[#6c5ce7] animate-luxury-fade" style={{backdropFilter: 'blur(8px)'}}>
+          <svg className="luxury-loader-spin mb-6" width="72" height="72" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="22" stroke="#fff" strokeWidth="4" opacity="0.18" />
+            <path d="M24 2a22 22 0 0 1 0 44" stroke="#fff" strokeWidth="4" strokeLinecap="round" />
+          </svg>
+          <span className="text-2xl font-bold text-white tracking-widest luxury-loader-text">PopX</span>
+        </div>
+      )}
       {/* Animated Blobs */}
       <div className="blob-bg-pro">
         <div className="blob blob1" />
@@ -32,7 +65,9 @@ const Welcome = () => {
         overflow: 'hidden',
         backdropFilter: 'blur(16px)',
         border: '1.5px solid #e0c3fc',
-        zIndex: 1
+        zIndex: 1,
+        opacity: loading ? 0 : 1,
+        transition: 'opacity 0.7s cubic-bezier(0.23,1,0.32,1)'
       }}>
         {/* Floating Premium Icon */}
         <div className="floating-logo-pro animate-float-pro absolute -top-10 left-1/2 -translate-x-1/2 bg-gradient-to-tr from-[#6c5ce7] to-[#a18fff] p-3 rounded-full shadow-xl animate-float-glow" style={{
@@ -69,8 +104,16 @@ const Welcome = () => {
                 </svg>
               </span>
             </span>
-            <span className="text-lg text-gray-700 font-medium text-center max-w-md animate-fade-in-slow italic mt-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            {/* Word-by-word fill/darkening animation */}
+            <span className="text-lg text-gray-700 font-medium text-center max-w-md italic mt-2 luxury-text-fill">
+              {luxuryWords.map((word, i) => (
+                <span key={i} className={`inline-block transition-all duration-300 luxury-word ${i <= fillIndex ? 'filled' : ''}`} style={{
+                  color: i <= fillIndex ? '#2d3436' : '#b2bec3',
+                  filter: i <= fillIndex ? 'none' : 'blur(1.5px)',
+                  fontWeight: i <= fillIndex ? 600 : 400,
+                  transitionDelay: `${i * 0.12}s`
+                }}> {word}</span>
+              ))}
             </span>
           </h1>
         </div>
@@ -221,6 +264,36 @@ const Welcome = () => {
         }
         .floating-logo-pro {
           z-index: 3;
+        }
+        /* Luxury Loader */
+        .luxury-loader-spin {
+          animation: luxurySpin 2.2s cubic-bezier(0.23,1,0.32,1) infinite;
+        }
+        @keyframes luxurySpin {
+          0% { transform: rotate(0deg) scale(0.92); opacity: 0.7; }
+          50% { transform: rotate(180deg) scale(1.08); opacity: 1; }
+          100% { transform: rotate(360deg) scale(0.92); opacity: 0.7; }
+        }
+        .luxury-loader-text {
+          letter-spacing: 0.18em;
+          text-shadow: 0 2px 16px #fff8, 0 1px 0 #a18fff;
+          font-family: 'Poppins', sans-serif;
+        }
+        .animate-luxury-fade {
+          animation: luxuryFadeIn 0.7s;
+        }
+        @keyframes luxuryFadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        /* Word-by-word fill/darkening animation */
+        .luxury-text-fill .luxury-word {
+          transition: color 0.3s, filter 0.3s, font-weight 0.3s;
+        }
+        .luxury-text-fill .luxury-word.filled {
+          color: #2d3436 !important;
+          filter: none !important;
+          font-weight: 600 !important;
         }
         @media (max-width: 600px) {
           .register-card-pro {
