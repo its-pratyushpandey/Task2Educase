@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaUser, FaPhone, FaEnvelope, FaLock, FaBuilding, FaCheckCircle, FaRegDotCircle, FaSpinner, FaEye, FaEyeSlash, FaGoogle, FaFacebook, FaTwitter, FaArrowLeft } from 'react-icons/fa';
+import { FaUser, FaPhone, FaEnvelope, FaLock, FaBuilding, FaCheckCircle, FaRegDotCircle, FaSpinner, FaEye, FaEyeSlash, FaArrowLeft } from 'react-icons/fa';
 import './index.css';
 
 const Register = () => {
@@ -41,22 +41,26 @@ const Register = () => {
     }
   };
 
-  // Social sign up handlers (placeholder)
-  const handleSocial = (provider) => {
-    alert(`Sign up with ${provider} coming soon!`);
-  };
-
   return (
-    <div className="register-bg fade-in" style={{
+    <div className="register-bg-pro fade-in-pro" style={{
       minHeight: '100vh',
+      width: '100vw',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      background: 'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)',
-      padding: '40px 0',
-      position: 'relative'
+      background: 'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 50%, #6c5ce7 100%)',
+      overflow: 'hidden',
+      position: 'relative',
+      zIndex: 0
     }}>
+      {/* Animated Blobs */}
+      <div className="blob-bg-pro">
+        <div className="blob blob1" />
+        <div className="blob blob2" />
+        <div className="blob blob3" />
+      </div>
+      {/* Glassmorphism Card */}
       <button onClick={() => navigate(-1)} style={{
         position: 'absolute',
         top: 30,
@@ -76,56 +80,69 @@ const Register = () => {
       }} title="Back">
         <FaArrowLeft style={{ color: '#6c5ce7', fontSize: '1.2rem' }} />
       </button>
-      <div className="register-card" style={{
-        background: 'rgba(255,255,255,0.95)',
-        borderRadius: '24px',
-        boxShadow: '0 8px 32px 0 rgba(76, 110, 245, 0.15)',
-        padding: '40px 32px',
-        maxWidth: '420px',
+      <div className="register-card-pro animate-card-in" style={{
+        background: 'rgba(255,255,255,0.85)',
+        borderRadius: '32px',
+        boxShadow: '0 12px 48px 0 rgba(76, 110, 245, 0.18)',
+        padding: '48px 36px',
+        maxWidth: '440px',
         width: '100%',
-        animation: 'fadeInUp 0.8s',
         position: 'relative',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        backdropFilter: 'blur(16px)',
+        border: '1.5px solid #e0c3fc',
+        zIndex: 1
       }}>
         {/* Animated success checkmark overlay */}
         {submitted && (
-          <div className="success-overlay fade-in" style={{
+          <div className="success-overlay fade-in-pro" style={{
             position: 'absolute',
             inset: 0,
-            background: 'rgba(255,255,255,0.95)',
+            background: 'rgba(255,255,255,0.97)',
             zIndex: 10,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            borderRadius: '24px',
+            borderRadius: '32px',
             animation: 'fadeIn 0.7s'
           }}>
             <FaCheckCircle style={{ color: '#00b894', fontSize: '3.5rem', animation: 'pop 0.6s' }} />
             <h2 style={{ color: '#6c5ce7', marginTop: 18, fontWeight: 700 }}>Registration Successful!</h2>
           </div>
         )}
-        <div style={{ marginBottom: '20px', textAlign: 'center' }}>
+        {/* Floating Logo/Icon */}
+        <div className="floating-logo-pro animate-float-pro" style={{
+          position: 'absolute',
+          top: -38,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          background: 'linear-gradient(135deg, #6c5ce7 0%, #8ec5fc 100%)',
+          borderRadius: '50%',
+          width: 76,
+          height: 76,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 4px 24px #6c5ce744',
+          zIndex: 3
+        }}>
+          <FaCheckCircle style={{ color: '#fff', fontSize: '2.5rem', filter: 'drop-shadow(0 2px 8px #00b89488)' }} />
+        </div>
+        <div style={{ marginBottom: '20px', textAlign: 'center', marginTop: 32 }}>
           <h1 style={{
-            fontSize: '2.5rem',
+            fontSize: '2.2rem',
             fontWeight: '700',
             color: '#6c5ce7',
-            marginBottom: '20px',
+            marginBottom: '18px',
             letterSpacing: '1px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             gap: '10px'
           }}>
-            <FaCheckCircle style={{ color: '#00b894', fontSize: '2rem', marginRight: '8px' }} />
             Create Account
           </h1>
-          <p style={{
-            fontSize: '1rem',
-            color: '#636e72',
-            marginBottom: '10px',
-            lineHeight: '1.6'
-          }}>Join our platform today and start your journey with us.</p>
           <p style={{
             fontSize: '1rem',
             color: '#636e72',
@@ -133,21 +150,9 @@ const Register = () => {
             lineHeight: '1.6'
           }}>Already have an account? <Link to="/login" style={{ color: '#6c5ce7', fontWeight: '600', textDecoration: 'underline' }}>Login</Link></p>
         </div>
-        {/* Social sign up section */}
-        <div className="social-signup fade-in" style={{ display: 'flex', justifyContent: 'center', gap: '18px', marginBottom: 24 }}>
-          <button type="button" className="social-btn" title="Sign up with Google" onClick={() => handleSocial('Google')}>
-            <FaGoogle style={{ color: '#db4437', fontSize: '1.3rem' }} />
-          </button>
-          <button type="button" className="social-btn" title="Sign up with Facebook" onClick={() => handleSocial('Facebook')}>
-            <FaFacebook style={{ color: '#4267B2', fontSize: '1.3rem' }} />
-          </button>
-          <button type="button" className="social-btn" title="Sign up with Twitter" onClick={() => handleSocial('Twitter')}>
-            <FaTwitter style={{ color: '#1da1f2', fontSize: '1.3rem' }} />
-          </button>
-        </div>
         <form onSubmit={handleSubmit} autoComplete="off">
-          <div className="form-group input-icon-group">
-            <FaUser className="input-icon" />
+          <div className="form-group input-icon-group-pro">
+            <FaUser className="input-icon-pro" />
             <input
               type="text"
               id="fullName"
@@ -159,8 +164,8 @@ const Register = () => {
               required
             />
           </div>
-          <div className="form-group input-icon-group">
-            <FaPhone className="input-icon" />
+          <div className="form-group input-icon-group-pro">
+            <FaPhone className="input-icon-pro" />
             <input
               type="tel"
               id="phone"
@@ -172,8 +177,8 @@ const Register = () => {
               required
             />
           </div>
-          <div className="form-group input-icon-group">
-            <FaEnvelope className="input-icon" />
+          <div className="form-group input-icon-group-pro">
+            <FaEnvelope className="input-icon-pro" />
             <input
               type="email"
               id="email"
@@ -185,8 +190,8 @@ const Register = () => {
               required
             />
           </div>
-          <div className="form-group input-icon-group" style={{ position: 'relative' }}>
-            <FaLock className="input-icon" />
+          <div className="form-group input-icon-group-pro" style={{ position: 'relative' }}>
+            <FaLock className="input-icon-pro" />
             <input
               type={showPassword ? 'text' : 'password'}
               id="password"
@@ -199,7 +204,7 @@ const Register = () => {
               style={{ paddingRight: 38 }}
             />
             <span
-              className="password-toggle"
+              className="password-toggle-pro"
               style={{
                 position: 'absolute',
                 right: 12,
@@ -215,8 +220,8 @@ const Register = () => {
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>
-          <div className="form-group input-icon-group">
-            <FaBuilding className="input-icon" />
+          <div className="form-group input-icon-group-pro">
+            <FaBuilding className="input-icon-pro" />
             <input
               type="text"
               id="company"
@@ -228,7 +233,7 @@ const Register = () => {
               required
             />
           </div>
-          <div className="form-group fade-in" style={{ marginBottom: '18px', marginTop: '10px' }}>
+          <div className="form-group fade-in-pro" style={{ marginBottom: '18px', marginTop: '10px' }}>
             <label style={{
               color: '#2d3436',
               fontWeight: '500',
@@ -236,8 +241,8 @@ const Register = () => {
               display: 'block',
               fontSize: '1rem'
             }}>Are you an Agency?</label>
-            <div className="radio-group" style={{ display: 'flex', gap: '18px', marginTop: '6px' }}>
-              <div className="radio-option" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div className="radio-group-pro" style={{ display: 'flex', gap: '18px', marginTop: '6px' }}>
+              <div className="radio-option-pro" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <input
                   type="radio"
                   id="yes"
@@ -251,7 +256,7 @@ const Register = () => {
                   <FaRegDotCircle style={{ color: formData.hasExperience === 'yes' ? '#6c5ce7' : '#b2bec3' }} /> Yes
                 </label>
               </div>
-              <div className="radio-option" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <div className="radio-option-pro" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <input
                   type="radio"
                   id="no"
@@ -269,44 +274,86 @@ const Register = () => {
           </div>
           <button
             type="submit"
-            className={isFormValid && !loading ? 'btn btn-primary animated-btn' : 'btn btn-disabled'}
+            className={isFormValid && !loading ? 'btn-pro btn-primary-pro animated-btn-pro' : 'btn-pro btn-disabled-pro'}
             style={{ width: '100%', marginTop: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', fontWeight: 600, fontSize: '1.1rem', letterSpacing: '0.5px', transition: 'all 0.2s' }}
             disabled={!isFormValid || loading}
           >
-            {loading ? <FaSpinner className="spin" style={{ fontSize: '1.2rem' }} /> : <FaCheckCircle style={{ fontSize: '1.2rem' }} />}
+            {loading ? <FaSpinner className="spin-pro" style={{ fontSize: '1.2rem' }} /> : <FaCheckCircle style={{ fontSize: '1.2rem' }} />}
             {loading ? 'Creating...' : 'Create Account'}
           </button>
         </form>
       </div>
       <style>{`
-        .fade-in {
-          animation: fadeIn 1.2s;
+        .fade-in-pro {
+          animation: fadeInPro 1.2s;
         }
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
+        @keyframes fadeInPro {
+          from { opacity: 0; transform: translateY(40px) scale(0.98); }
+          to { opacity: 1; transform: translateY(0) scale(1); }
         }
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(40px); }
-          to { opacity: 1; transform: translateY(0); }
+        .animate-card-in {
+          animation: cardIn 1.1s cubic-bezier(0.23, 1, 0.32, 1);
         }
-        @keyframes pop {
-          0% { transform: scale(0.7); opacity: 0; }
-          60% { transform: scale(1.15); opacity: 1; }
-          100% { transform: scale(1); }
+        @keyframes cardIn {
+          0% { opacity: 0; transform: scale(0.95) translateY(60px); }
+          100% { opacity: 1; transform: scale(1) translateY(0); }
         }
-        .register-card {
+        .animate-float-pro {
+          animation: floatPro 3.5s ease-in-out infinite;
+        }
+        @keyframes floatPro {
+          0%, 100% { transform: translateX(-50%) translateY(0); }
+          50% { transform: translateX(-50%) translateY(-12px); }
+        }
+        .blob-bg-pro {
+          position: absolute;
+          inset: 0;
+          width: 100vw;
+          height: 100vh;
+          z-index: 0;
+          overflow: hidden;
+        }
+        .blob {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(60px);
+          opacity: 0.25;
+          animation: blobMove 12s infinite alternate;
+        }
+        .blob1 {
+          width: 420px; height: 420px;
+          background: #6c5ce7;
+          top: -120px; left: -120px;
+          animation-delay: 0s;
+        }
+        .blob2 {
+          width: 320px; height: 320px;
+          background: #00b894;
+          bottom: -100px; right: -100px;
+          animation-delay: 2s;
+        }
+        .blob3 {
+          width: 260px; height: 260px;
+          background: #a18fff;
+          top: 60%; left: 70%;
+          animation-delay: 4s;
+        }
+        @keyframes blobMove {
+          0% { transform: scale(1) translateY(0) translateX(0); }
+          100% { transform: scale(1.15) translateY(-30px) translateX(30px); }
+        }
+        .register-card-pro {
           transition: box-shadow 0.3s, transform 0.3s;
         }
-        .register-card:hover {
-          box-shadow: 0 12px 40px 0 rgba(76, 110, 245, 0.22);
+        .register-card-pro:hover {
+          box-shadow: 0 16px 56px 0 rgba(76, 110, 245, 0.22);
           transform: translateY(-2px) scale(1.01);
         }
-        .input-icon-group {
+        .input-icon-group-pro {
           position: relative;
-          margin-bottom: 18px;
+          margin-bottom: 20px;
         }
-        .input-icon {
+        .input-icon-pro {
           position: absolute;
           left: 14px;
           top: 50%;
@@ -316,73 +363,65 @@ const Register = () => {
           opacity: 0.85;
           pointer-events: none;
         }
-        .input-icon-group input {
+        .input-icon-group-pro input {
           padding-left: 38px;
-          border-radius: 8px;
+          border-radius: 10px;
           border: 1.5px solid #dfe6e9;
-          height: 44px;
+          height: 46px;
           font-size: 1rem;
-          transition: border 0.2s, box-shadow 0.2s;
+          transition: border 0.2s, box-shadow 0.2s, background 0.2s;
           background: #f8fafc;
         }
-        .input-icon-group input:focus {
+        .input-icon-group-pro input:focus {
           border: 1.5px solid #6c5ce7;
           box-shadow: 0 0 0 2px #a29bfe33;
           background: #fff;
         }
-        .btn-primary {
+        .btn-pro.btn-primary-pro {
           background: linear-gradient(90deg, #6c5ce7 0%, #00b894 100%);
           color: #fff;
           border: none;
-          border-radius: 8px;
-          padding: 12px 0;
+          border-radius: 10px;
+          padding: 14px 0;
           cursor: pointer;
           box-shadow: 0 2px 8px 0 #6c5ce71a;
         }
-        .btn-primary:hover, .btn-primary:focus {
+        .btn-pro.btn-primary-pro:hover, .btn-pro.btn-primary-pro:focus {
           background: linear-gradient(90deg, #00b894 0%, #6c5ce7 100%);
           box-shadow: 0 4px 16px 0 #6c5ce733;
           transform: translateY(-1px) scale(1.01);
         }
-        .btn-disabled {
+        .btn-pro.btn-disabled-pro {
           background: #dfe6e9;
           color: #b2bec3;
-          border-radius: 8px;
-          padding: 12px 0;
+          border-radius: 10px;
+          padding: 14px 0;
           cursor: not-allowed;
         }
-        .animated-btn {
+        .animated-btn-pro {
           transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
         }
-        .spin {
-          animation: spin 1s linear infinite;
+        .spin-pro {
+          animation: spinPro 1s linear infinite;
         }
-        @keyframes spin {
+        @keyframes spinPro {
           100% { transform: rotate(360deg); }
-        }
-        .social-btn {
-          background: #fff;
-          border: 1.5px solid #e0e0e0;
-          border-radius: 50%;
-          width: 44px;
-          height: 44px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          box-shadow: 0 2px 8px #6c5ce71a;
-          transition: box-shadow 0.2s, transform 0.2s, border 0.2s;
-          margin: 0 2px;
-        }
-        .social-btn:hover {
-          box-shadow: 0 4px 16px #a29bfe33;
-          transform: scale(1.08);
-          border: 1.5px solid #6c5ce7;
         }
         .success-overlay {
           animation: fadeIn 0.7s;
         }
-        .password-toggle:hover {
+        .password-toggle-pro:hover {
           color: #00b894;
+        }
+        @media (max-width: 600px) {
+          .register-card-pro {
+            padding: 32px 8px;
+            max-width: 98vw;
+            border-radius: 18px;
+          }
+          .floating-logo-pro {
+            width: 54px; height: 54px; top: -28px;
+          }
         }
       `}</style>
     </div>
